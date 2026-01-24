@@ -20,4 +20,8 @@ class SubjectsModel extends Model
             'classroom_id'
         );
     }
+
+    public function nilais(){
+        return $this->hasMany(Nilai::class, 'subject_id', 'id');
+    }
 }

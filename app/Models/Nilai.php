@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Filament\Resources\Nilais\NilaiResource;
 
 class Nilai extends Model
 {
     protected $table = 'nilais';
 
     protected $guarded = ['id'];
+
 
     public function class()
     {

@@ -24,10 +24,10 @@ class StudentHasClassesTable
                 TextColumn::make('classroom.name'),
             ])
             ->filters([
-                SelectFilter::make('classrooms_id')
-                ->options(ClassroomsModel::all()->pluck('cname', 'id')),
-                SelectFilter::make('periode_id')
-                ->options(PeriodesModel::all()->pluck('cname', 'id'))
+                // SelectFilter::make('classrooms_id')
+                // ->options(ClassroomsModel::all()->pluck('name', 'id')),
+                // SelectFilter::make('periode_id')
+                // ->options(PeriodesModel::all()->pluck('cname', 'id'))
             ])
             ->recordActions([
                 EditAction::make(),

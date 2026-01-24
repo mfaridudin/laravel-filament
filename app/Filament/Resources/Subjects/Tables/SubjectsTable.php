@@ -17,6 +17,7 @@ class SubjectsTable
                 TextColumn::make('kode'),
                 TextColumn::make('name'),
                 TextColumn::make('slug'),
+                TextColumn::make('nilais_sum_nilai')->avg('nilais', 'nilai')
             ])
             ->filters([
                 //
