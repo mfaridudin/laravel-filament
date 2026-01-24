@@ -7,17 +7,19 @@ use App\Filament\Resources\StudentHasClasses\Pages\FormStudentClass;
 use App\Filament\Resources\StudentHasClasses\Pages\ListStudentHasClasses;
 use App\Filament\Resources\StudentHasClasses\Schemas\StudentHasClassForm;
 use App\Filament\Resources\StudentHasClasses\Tables\StudentHasClassesTable;
+use App\Models\StudentHasClassModel;
 use App\Models\StudentHasModel;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class StudentHasClassResource extends Resource
 {
-    protected static ?string $model = StudentHasModel::class;
+    protected static ?string $model = StudentHasClassModel::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
@@ -25,7 +27,22 @@ class StudentHasClassResource extends Resource
 
     protected static ?int $navigationSort = 21;
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->with(['classroom', 'student', 'periode']);
+    }
+
     protected static ?string $recordTitleAttribute = 'StudentHasClass';
+
+    // public static function shouldRegisterNavigation(): bool
+    // {
+    //     if (auth()->user()->can('classroom')) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     public static function form(Schema $schema): Schema
     {

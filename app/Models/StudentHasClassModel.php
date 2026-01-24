@@ -10,12 +10,34 @@ class StudentHasClassModel extends Model
 
     protected $guarded = ['id'];
 
-    public function classrooms()
+    public function classroom()
     {
-        return $this->belongsTo(ClassroomsModel::class, 'classrooms_id', 'id');
+        return $this->belongsTo(
+            ClassroomsModel::class,
+            'classrooms_id',
+            'id'
+        );
     }
 
-    public function periode(){
-        return $this->belongsTo(PeriodesModel::class);
+    // protected $casts = [
+    //     'students_id' => 'Array',
+    // ];
+
+    public function periode()
+    {
+        return $this->belongsTo(
+            PeriodesModel::class,
+            'periode_id',
+            'id'
+        );
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(
+            StudentsModel::class,
+            'students_id',
+            'id'
+        );
     }
 }

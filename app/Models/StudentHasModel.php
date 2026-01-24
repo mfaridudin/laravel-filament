@@ -11,7 +11,7 @@ class StudentHasModel extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        // 'students_id' => 'Array'
+        'students_id' => 'Array'
     ];
 
     public function teachers()
@@ -26,8 +26,7 @@ class StudentHasModel extends Model
 
     public function students()
     {
-        // return $this->belongsTo(StudentsModel::class);
-          return $this->belongsTo(StudentsModel::class, 'students_id');
+        return $this->belongsTo(StudentsModel::class);
     }
 
 }

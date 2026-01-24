@@ -9,15 +9,4 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/test-notif', function () {
-    $user = User::first();
-
-    Notification::make()
-        ->title('Notif DB aktif')
-        ->success()
-        ->sendToDatabase($user);
-
-    return 'sent';
-});
-
 Route::get('/export', [ExportController::class, 'export']);

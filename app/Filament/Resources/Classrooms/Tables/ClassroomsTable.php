@@ -22,10 +22,10 @@ class ClassroomsTable
                     ->label('Nama')
                     ->searchable(),
                 TextColumn::make('slug')
-                    ->label('Slug'),
-                TextColumn::make('students_count')
-                    ->counts('students')
-                    ->label('Total Pengguna'),
+                    ->label('Slug'),    
+                // TextColumn::make('students_count')
+                //     ->counts('students')
+                //     ->label('Total Pengguna'),
             ])
             ->filters([
                 //

@@ -17,7 +17,6 @@ class StudentHasClassForm
             ->components([
                   Select::make('students_id')
                     ->searchable()
-                    ->multiple()
                     ->options(StudentsModel::all()->pluck('name', 'id'))
                     ->label('Student'),
 

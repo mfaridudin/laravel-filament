@@ -75,28 +75,27 @@ class Home extends Component implements HasForms
     {
         $data = $this->form->getState();
 
-        // process upload
         if ($this->profile) {
-            $uploadedFile = $this->profile;
-            $fileName = time().'.'.$uploadedFile->getClientOriginalName();
-            $path = $uploadedFile->storeAs('public/students', $fileName);
-
+            $fileName = time().'_'.$this->profile->getClientOriginalName();
+            $this->profile->storeAs('public/students', $fileName);
             $data['profile'] = 'students/'.$fileName;
         }
 
-        StudentsModel::insert($data);
+        $data['user_id'] = auth()->id();
+
+        StudentsModel::create($data);
 
         Notification::make()
             ->title('Murid baru mendaftar')
-            ->body('Nama: '.$this->name)
+            ->body('Nama: '.$data['name'])
             ->success()
             ->sendToDatabase(
-                User::whereHas('roles', fn ($q) => $q->where('name', 'super_admin'))->get()
+                User::whereHas('roles', fn ($q) => $q->where('name', 'admin'))->get()
             );
+
         session()->flash('message', 'Save Successfully');
     }
 
-    // public function save(): void
     // {
     //     $user = User::first();
     //     Notification::make()
