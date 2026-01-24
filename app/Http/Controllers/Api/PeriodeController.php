@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\DepartmentsModel;
+use App\Models\PeriodesModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class DepartmentController extends Controller
+class PeriodeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $department = DepartmentsModel::all();
+        $periode = PeriodesModel::all();
 
         return response()->json([
             'status' => 'true',
-            'massage' => 'List data department',
-            'data' => $department,
+            'massage' => 'List data periode',
+            'data' => $periode,
         ], 200);
     }
 
@@ -28,12 +28,10 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $department = new DepartmentsModel;
+        $periode = new PeriodesModel;
 
         $rules = [
-            'name_department' => 'required|max:50',
-            'slug' => 'required|max:50',
-            'description' => 'required',
+            'name' => 'required|max:50',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -46,16 +44,14 @@ class DepartmentController extends Controller
             ], 422);
         }
 
-        $department = DepartmentsModel::create([
-            'name_department' => $request->name_department,
-            'slug' => $request->slug,
-            'description' => $request->description,
+        $periode = PeriodesModel::create([
+            'name' => $request->name,
         ]);
 
         return response()->json([
             'status' => true,
-            'message' => 'department berhasil ditambahkan',
-            'data' => $department,
+            'message' => 'periode berhasil ditambahkan',
+            'data' => $periode,
         ], 201);
     }
 
@@ -64,12 +60,12 @@ class DepartmentController extends Controller
      */
     public function show(string $id)
     {
-        $department = DepartmentsModel::findOrFail($id);
+        $periode = PeriodesModel::findOrFail($id);
 
         return response()->json([
             'status' => 'true',
-            'massage' => 'Detail data department',
-            'data' => $department,
+            'massage' => 'Detail data periode',
+            'data' => $periode,
         ], 200);
     }
 
@@ -78,13 +74,10 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $department = DepartmentsModel::findOrFail($id);
+        $periode = PeriodesModel::findOrFail($id);
 
         $rules = [
-            'name_department' => 'required|max:50',
-            'slug' => 'required|max:50',
-            'description' => 'required',
-
+            'name' => 'required|max:50',
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -97,15 +90,13 @@ class DepartmentController extends Controller
             ], 422);
         }
 
-        $department->name_department = $request->name_department;
-        $department->slug = $request->slug;
-         $department->description = $request->description;
-        $department->save();
+        $periode->name = $request->name;
+        $periode->save();
 
         return response()->json([
             'status' => true,
-            'message' => 'department berhasil update',
-            'data' => $department,
+            'message' => 'periode berhasil update',
+            'data' => $periode,
         ], 201);
     }
 
@@ -114,14 +105,14 @@ class DepartmentController extends Controller
      */
     public function destroy(string $id)
     {
-        $department = DepartmentsModel::findOrFail($id);
+        $periode = PeriodesModel::findOrFail($id);
 
-        $department->delete();
+        $periode->delete();
 
         return response()->json([
             'status' => true,
-            'message' => 'department berhasil dihapus',
-            'data' => $department,
+            'message' => 'periode berhasil dihapus',
+            'data' => $periode,
         ], 200);
     }
 }

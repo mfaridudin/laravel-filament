@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoriesNilaiController;
 use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\PeriodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,4 @@ Route::post('/admin/register', [AuthController::class, 'register']);
 Route::apiResource('/admin/classrooms', ClassroomController::class);
 Route::apiResource('/admin/category-nilai', CategoriesNilaiController::class);
 Route::apiResource('/admin/department', DepartmentController::class);
+Route::apiResource('/admin/periode', PeriodeController::class);
