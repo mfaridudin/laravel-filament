@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClassroomsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClassroomController extends Controller
 {
@@ -12,12 +14,12 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $class = Hobbies::all();
+        $classrooms = ClassroomsModel::all();
 
         return response()->json([
             'status' => 'true',
-            'massage' => 'List data hobby',
-            'data' => $hobbies,
+            'massage' => 'List data classroom',
+            'data' => $classrooms,
         ], 200);
     }
 
@@ -26,7 +28,33 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $classrooms = new ClassroomsModel;
+
+        $rules = [
+            'name' => 'required|max:50',
+            'slug' => 'required|max:50',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Proses Validasi error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $classrooms = ClassroomsModel::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Classroom berhasil ditambahkan',
+            'data' => $classrooms,
+        ], 201);
     }
 
     /**
@@ -34,7 +62,13 @@ class ClassroomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $classroom = ClassroomsModel::findOrFail($id);
+
+        return response()->json([
+            'status' => 'true',
+            'massage' => 'Detail data classroom',
+            'data' => $classroom,
+        ], 200);
     }
 
     /**
@@ -42,7 +76,32 @@ class ClassroomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $classroom = ClassroomsModel::findOrFail($id);
+
+        $rules = [
+            'name' => 'required|max:50',
+            'slug' => 'required|max:50',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Proses Validasi error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $classroom->name = $request->name;
+        $classroom->slug = $request->slug;
+        $classroom->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Classroom berhasil update',
+            'data' => $classroom,
+        ], 201);
     }
 
     /**
@@ -50,6 +109,14 @@ class ClassroomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $classroom = ClassroomsModel::findOrFail($id);
+
+        $classroom->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Classroom berhasil dihapus',
+                'data' => $classroom,
+        ], 200);
     }
 }
