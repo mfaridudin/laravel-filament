@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Filament\Resources\Departments;
+
+use App\Filament\Resources\Departments\Pages\CreateDepartment;
+use App\Filament\Resources\Departments\Pages\EditDepartment;
+use App\Filament\Resources\Departments\Pages\ListDepartments;
+use App\Filament\Resources\Departments\Schemas\DepartmentForm;
+use App\Filament\Resources\Departments\Tables\DepartmentsTable;
+use App\Models\DepartmentsModel;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+use UnitEnum;
+
+class DepartmentResource extends Resource
+{
+    protected static ?string $model = DepartmentsModel::class;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static ?string $recordTitleAttribute = 'Department';
+
+    protected static UnitEnum|string|null $navigationGroup = 'Source';
+
+    protected static ?int $navigationSort = 12;
+
+    protected static ?string $navigationLabel = 'Department';
+
+    public static function form(Schema $schema): Schema
+    {
+        return DepartmentForm::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return DepartmentsTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListDepartments::route('/'),
+            'create' => CreateDepartment::route('/create'),
+            'edit' => EditDepartment::route('/{record}/edit'),
+        ];
+    }
+}
