@@ -2,11 +2,12 @@
 
 namespace App\Filament\Resources\Subjects\Tables;
 
-use Filament\Tables\Table;
-use Filament\Actions\EditAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ReplicateAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class SubjectsTable
 {
@@ -17,7 +18,7 @@ class SubjectsTable
                 TextColumn::make('kode'),
                 TextColumn::make('name'),
                 TextColumn::make('slug'),
-                TextColumn::make('nilais_sum_nilai')->avg('nilais', 'nilai')
+                TextColumn::make('nilais_sum_nilai')->avg('nilais', 'nilai'),
             ])
             ->filters([
                 //
