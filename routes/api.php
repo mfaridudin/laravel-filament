@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\DepartmentController;
 use App\Http\Controllers\Api\PeriodeController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\SubjectController;
+use App\Http\Controllers\Api\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,4 @@ Route::apiResource('/admin/department', DepartmentController::class);
 Route::apiResource('/admin/periode', PeriodeController::class);
 Route::apiResource('/admin/subject', SubjectController::class);
 Route::apiResource('/admin/students', StudentController::class);
+Route::apiResource('/admin/teacher', TeacherController::class);
