@@ -51,6 +51,7 @@ class TeacherController extends Controller
             'name' => $request->name,
             'nip' => $request->nip,
             'address' => $request->address,
+            'profile' => $request->profile
         ]);
 
         return response()->json([
@@ -100,6 +101,7 @@ class TeacherController extends Controller
         $teacher->name = $request->name;
         $teacher->nip = $request->nis;
         $teacher->address = $request->gender;
+        $teacher->profile = $request->profile;
         $teacher->save();
 
         return response()->json([

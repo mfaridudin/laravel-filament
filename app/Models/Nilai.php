@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Filament\Resources\Nilais\NilaiResource;
 
 class Nilai extends Model
 {
@@ -11,10 +10,14 @@ class Nilai extends Model
 
     protected $guarded = ['id'];
 
-
     public function class()
     {
         return $this->belongsTo(ClassroomsModel::class, 'class_id', 'id');
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(TeachersModel::class, 'teacher_id', 'id');
     }
 
     public function student()
