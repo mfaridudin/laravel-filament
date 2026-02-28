@@ -52,6 +52,7 @@ class NilaiForm
                     ->required(),
 
                 Repeater::make('details')
+                    // ->relationship()
                     ->label('Daftar Nilai Siswa')
                     ->schema([
 
@@ -65,7 +66,7 @@ class NilaiForm
                             ->numeric()
                             ->required()
                             ->rules([
-                                fn (Get $get): Closure => function (string $attribute, $value, Closure $fail) {
+                                fn(Get $get): Closure => function (string $attribute, $value, Closure $fail) {
                                     if ($value > 100) {
                                         $fail('Nilai tidak boleh lebih dari 100');
                                     }
@@ -80,7 +81,8 @@ class NilaiForm
                     ->addActionLabel('Tambah Siswa')
                     ->reorderable()
                     ->defaultItems(1)
-                    ->itemLabel(fn (array $state): ?string => $state['student_id']
+                    ->itemLabel(
+                        fn(array $state): ?string => $state['student_id']
                             ? StudentsModel::find($state['student_id'])?->name
                             : 'Nilai Siswa'
                     ),

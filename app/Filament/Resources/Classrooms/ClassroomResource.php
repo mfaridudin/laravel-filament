@@ -22,13 +22,18 @@ class ClassroomResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Classroom';
+    protected static ?string $recordTitleAttribute = 'name';
 
-    protected static UnitEnum|string|null $navigationGroup = 'Source';
+    protected static UnitEnum|string|null $navigationGroup = 'Akademi';
 
     protected static ?int $navigationSort = 11;
 
-    protected static ?string $navigationLabel = 'Classroom';
+    protected static ?string $navigationLabel = 'Kelas';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-building-library';
+    }
 
     public static function form(Schema $schema): Schema
     {

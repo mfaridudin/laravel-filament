@@ -21,13 +21,19 @@ class StudentsResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Students';
+    // protected static ?string $recordTitleAttribute = 'Students';
 
-     protected static UnitEnum|string|null $navigationGroup = 'Academic';
+    protected static UnitEnum|string|null $navigationGroup = 'Akademi';
+    
 
     protected static ?int $navigationSort = 22;
 
-    protected static ?string $navigationLabel = 'Murid';
+    protected static ?string $navigationLabel = 'Siswa';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-user-group';
+    }
 
     public static function form(Schema $schema): Schema
     {

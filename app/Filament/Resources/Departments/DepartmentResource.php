@@ -21,13 +21,18 @@ class DepartmentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Department';
+    protected static ?string $recordTitleAttribute = 'name_department';
 
-    protected static UnitEnum|string|null $navigationGroup = 'Source';
+    protected static UnitEnum|string|null $navigationGroup = 'Akademi';
 
     protected static ?int $navigationSort = 12;
 
-    protected static ?string $navigationLabel = 'Department';
+    protected static ?string $navigationLabel = 'Jurusan';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-academic-cap';
+    }
 
     public static function form(Schema $schema): Schema
     {

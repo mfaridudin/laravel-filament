@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class NilaiResource extends Resource
 {
@@ -20,7 +21,16 @@ class NilaiResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Nilai';
+    protected static UnitEnum|string|null $navigationGroup = 'Penilaian';
+
+    protected static ?int $navigationSort = 21;
+
+    // protected static ?string $recordTitleAttribute = 'Nilai';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-clipboard-document-check';
+    }
 
     public static function form(Schema $schema): Schema
     {

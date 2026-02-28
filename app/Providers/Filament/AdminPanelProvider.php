@@ -35,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->authGuard('web')
             ->login(Login::class)
-            ->registration()
+            ->registration(Register::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -43,7 +43,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
-                // Dashboard::class,
+                Dashboard::class,
             ])
             // ->tenant(
             //     TeamModel::class,
@@ -67,18 +67,27 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentShieldPlugin::make()
-                    // ->withoutTenancy(),
+                // ->withoutTenancy(),
+                // ->disablePanelAccessCheck()
             ])
             ->authMiddleware([
                 Authenticate::class,
             ])->navigationGroups([
                 NavigationGroup::make()
+                    ->label('Akademi')
+                    // ->icon('heroicon-o-cog-6-tooth')
+                    ->collapsed(),
+                NavigationGroup::make()
+                    ->label('Penilaian')
+                    // ->icon('heroicon-o-cog-6-tooth')
+                    ->collapsed(),
+                NavigationGroup::make()
                     ->label('Settings')
-                    ->icon('heroicon-o-cog-6-tooth')
+                    // ->icon('heroicon-o-cog-6-tooth')
                     ->collapsed(),
                 NavigationGroup::make()
                     ->label('Filament Shield')
-                    ->icon('heroicon-o-cog-6-tooth')
+                    // ->icon('heroicon-o-cog-6-tooth')
                     ->collapsed(),
             ]);
     }

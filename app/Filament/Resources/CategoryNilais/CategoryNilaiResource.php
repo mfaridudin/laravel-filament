@@ -7,7 +7,7 @@ use App\Filament\Resources\CategoryNilais\Pages\EditCategoryNilai;
 use App\Filament\Resources\CategoryNilais\Pages\ListCategoryNilais;
 use App\Filament\Resources\CategoryNilais\Schemas\CategoryNilaiForm;
 use App\Filament\Resources\CategoryNilais\Tables\CategoryNilaisTable;
-use App\Models\CategoryNilai;
+use UnitEnum;
 use App\Models\CategoryNilaisModel;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -21,7 +21,18 @@ class CategoryNilaiResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'CategoryNilai';
+    protected static UnitEnum|string|null $navigationGroup = 'Penilaian';
+
+    protected static ?int $navigationSort = 21;
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+       protected static ?string $navigationLabel = 'Kategori Nilai';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-tag';
+    }
 
     public static function form(Schema $schema): Schema
     {

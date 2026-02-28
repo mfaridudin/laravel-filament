@@ -17,12 +17,6 @@ class AdjacencyForm
                     ->label('Name')
                     ->required()
                     ->maxLength(255),
-                // Select::make('parent_id')
-                //     ->label('Parent')
-                //     ->options(fn () => Adjacency::treeOptions())
-                //     ->searchable()
-                //     ->nullable()
-                //     ->default(null),
                 Select::make('parent_id')
                     ->label('Parent')
                     ->options(fn () => Adjacency::treeOptions())

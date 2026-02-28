@@ -24,13 +24,18 @@ class PeriodeResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Settings';
+    protected static UnitEnum|string|null $navigationGroup = 'Penilaian';
 
-    protected static ?int $navigationSort = 31;
+    protected static ?int $navigationSort = 21;
 
     protected static ?string $navigationLabel = 'Periode';
 
-    protected static ?string $recordTitleAttribute = 'PeriodesModel';
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-calendar-days';
+    }
+
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {
@@ -58,8 +63,8 @@ class PeriodeResource extends Resource
                 //
             ])
             ->recordActions([
-                EditAction::make(),   
-                ViewAction::make(),           
+                EditAction::make(),
+                ViewAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([

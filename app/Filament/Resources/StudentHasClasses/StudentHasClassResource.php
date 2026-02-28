@@ -23,9 +23,16 @@ class StudentHasClassResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Actions';
+    protected static UnitEnum|string|null $navigationGroup = 'Penilaian';
 
     protected static ?int $navigationSort = 21;
+
+    protected static ?string $navigationLabel = 'Relasi Siswa & Kelas';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-arrows-right-left';
+    }
 
     public static function getEloquentQuery(): Builder
     {
@@ -33,7 +40,7 @@ class StudentHasClassResource extends Resource
             ->with(['classroom', 'student', 'periode']);
     }
 
-    protected static ?string $recordTitleAttribute = 'StudentHasClass';
+    // protected static ?string $recordTitleAttribute = 'StudentHasClass';
 
     // public static function shouldRegisterNavigation(): bool
     // {

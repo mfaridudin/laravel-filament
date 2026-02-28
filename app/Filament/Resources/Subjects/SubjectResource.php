@@ -21,11 +21,16 @@ class SubjectResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'SubjectsModel';
+    // protected static ?string $recordTitleAttribute = 'SubjectsModel';
 
-    protected static UnitEnum|string|null $navigationGroup = 'Academic';
+    protected static UnitEnum|string|null $navigationGroup = 'Akademi';
 
-    protected static ?string $navigationLabel = 'Subject';
+    protected static ?string $navigationLabel = 'Mata Pelajaran';
+
+    public static function getNavigationIcon(): ?string
+    {
+        return 'heroicon-o-book-open';
+    }
 
     public static function form(Schema $schema): Schema
     {

@@ -5,6 +5,7 @@ namespace App\Filament\Auth;
 use Filament\Auth\Pages\Register as BaseRegister;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Spatie\Permission\Models\Role;
 
 class Register extends BaseRegister
 {
@@ -16,11 +17,20 @@ class Register extends BaseRegister
                 $this->getEmailFormComponent(),
                 $this->getPasswordFormComponent(),
                 $this->getPasswordConfirmationFormComponent(),
-
-                TextInput::make('phone')
-                    ->label('Phone')
-                    ->required()
-                    ->maxLength(20),
             ]);
+    }
+
+    protected function handleRegistration(array $data): \Illuminate\Database\Eloquent\Model
+    {
+        $user = parent::handleRegistration($data);
+
+        $role = Role::firstOrCreate([
+            'name' => 'admin',
+            'guard_name' => 'web',
+        ]);
+
+        $user->assignRole($role);
+
+        return $user;
     }
 }
