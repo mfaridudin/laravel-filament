@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreignIdFor(TeachersModel::class, 'teacher_id');
             $table->foreignIdFor(SubjectsModel::class, 'subject_id');
             $table->foreignIdFor(CategoryNilaisModel::class, 'category_nilai_id');
-            $table->double('nilai')->unsigned();
+            $table->double('nilai', false)->unsigned();
             $table->timestamps();
         });
     }

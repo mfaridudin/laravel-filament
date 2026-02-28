@@ -44,13 +44,14 @@ class SubjectsRelationManager extends RelationManager
             ])
             ->headerActions([
                 AttachAction::make()
-                    ->schema(fn (AttachAction $action): array => [
+                    ->preloadRecordSelect()
+                    ->schema(fn(AttachAction $action): array => [
                         $action->getRecordSelect(),
                         TextInput::make('description')
                             ->label('Deskripsi'),
                     ])
                     ->recordSelect(
-                        fn (Select $select) => $select->placeholder('Select a subject'),
+                        fn(Select $select) => $select->placeholder('Select a subject'),
                     ),
 
             ])

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('subject_id')
                 ->constrained()
                 ->cascadeOnDelete();
-
+            $table->string('description');
             $table->timestamps();
         });
     }

@@ -15,11 +15,6 @@ class Nilai extends Model
         return $this->belongsTo(ClassroomsModel::class, 'class_id', 'id');
     }
 
-    public function teacher()
-    {
-        return $this->belongsTo(TeachersModel::class, 'teacher_id', 'id');
-    }
-
     public function student()
     {
         return $this->belongsTo(StudentsModel::class);
@@ -38,5 +33,10 @@ class Nilai extends Model
     public function category_nilai()
     {
         return $this->belongsTo(CategoryNilaisModel::class, 'category_nilai_id', 'id');
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(TeachersModel::class, 'teacher_id', 'id');
     }
 }

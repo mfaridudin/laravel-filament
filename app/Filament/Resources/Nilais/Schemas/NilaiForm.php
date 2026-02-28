@@ -50,6 +50,7 @@ class NilaiForm
                     ->options(TeachersModel::pluck('name', 'id'))
                     ->searchable()
                     ->required(),
+                    
 
                 Repeater::make('details')
                     // ->relationship()

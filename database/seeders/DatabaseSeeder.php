@@ -17,13 +17,21 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(RoleHasPermissionsTableSeeder::class);
+        $this->call(AdjacencySeeder::class);
+        $this->call(ClassroomSubjectTableSeeder::class);
+        $this->call(StudentHasClassTableSeeder::class);
+        $this->call(DepartmentsTableSeeder::class);
+        $this->call(PeriodesTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
+        $this->call(CategoryNilaisTableSeeder::class);
+        $this->call(NilaisTableSeeder::class);
     }
 }
